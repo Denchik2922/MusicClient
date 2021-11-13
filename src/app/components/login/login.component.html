@@ -1,0 +1,31 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2>Login form</h2>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-6 col-lg-6">
+          <form [formGroup]="form" (ngSubmit)="login()" novalidate>
+            <div class="row">
+              <div class="col-sm-6">
+                <label for="Username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="Username"  formControlName="name">
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password"  formControlName="password">
+              </div>
+              <hr class="my-4">
+              <div class="row">
+                <a href="" class="col-9">Register</a>
+              <button class="btn btn-primary col-3" type="submit">Login</button>
+              </div>
+              
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </main>
+</div>

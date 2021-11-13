@@ -1,0 +1,17 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <div class="col" *ngFor="let musician of (musicians | async)">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{musician.firstName}}</h5>
+                        <p class="card-text">{{musician.lastName}}</p>
+                        <a  [routerLink]="['/musician', musician.id]"  class="btn btn-primary">View details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
