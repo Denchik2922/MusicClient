@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
     this.authService.login(name, password)
     .subscribe(res => {
       this.router.navigate(['/']);
+    }, error => {
+      alert("Wrong login or password");
     })
   }
 

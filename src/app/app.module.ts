@@ -12,6 +12,7 @@ import { JwtModule } from "@auth0/angular-jwt";
 import { ACCESS_TOKEN_KEY } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
@@ -24,7 +25,8 @@ export function tokenGetter(){
     GenresComponent,
     HeaderComponent,
     MusicianDetailComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
 
   ],
   imports: [

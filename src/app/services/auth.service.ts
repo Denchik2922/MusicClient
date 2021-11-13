@@ -31,13 +31,12 @@ export class AuthService {
    }
 
   login(username: string, password: string) : Observable<Token>{
-    return this.http.post<Token>("https://localhost:5001/api/Auth/login", {username,password}, this.httpOptions)
+    return this.http.post<Token>(this.AppUrl + this.ApiUrl + "login", {username,password}, this.httpOptions)
     .pipe(
       tap((res: any) => {
         localStorage.setItem(ACCESS_TOKEN_KEY, res.access_token)
       })
     )
-
   }
 
   isAuth(): boolean{
@@ -52,5 +51,9 @@ export class AuthService {
   logout():void{
     localStorage.removeItem(ACCESS_TOKEN_KEY);
     this.router.navigate(['/']);
+  }
+
+  register():void{
+    
   }
 }
