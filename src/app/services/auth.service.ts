@@ -5,6 +5,7 @@ import { Observable, tap } from 'rxjs';
 import { JwtHelperService} from "@auth0/angular-jwt";
 import { environment } from 'src/environments/environment';
 import { Token } from '@angular/compiler/src/ml_parser/tokens';
+import { RegisterModel } from '../models/RegisterModel';
 
 export const ACCESS_TOKEN_KEY = "music_token";
 
@@ -45,7 +46,12 @@ export class AuthService {
   }
 
   isAdmin() : boolean{
-    return true;
+    let token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if(token != null){
+      let decodedJWT = JSON.parse(window.atob(token!.split('.')[1]));
+      return decodedJWT.role?.toLowerCase() == 'admin';
+    }
+    return false;
   }
 
   logout():void{
@@ -53,7 +59,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
-  register():void{
-    
+  register(register: RegisterModel): Observable<Object>{
+    return this.http.post(this.AppUrl + this.ApiUrl + "register", register)
   }
 }

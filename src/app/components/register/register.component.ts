@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { MustMatch } from 'src/app/helpers/ConfirmValidator';
+import { RegisterModel } from 'src/app/models/RegisterModel';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -42,9 +43,24 @@ export class RegisterComponent implements OnInit {
   }
 
   register(): void{
-    if(this.form.valid){
-      alert("valid");
+    if(!this.form.valid){
+      return;
     } 
+
+    let register: RegisterModel = {
+      username: this.username?.value,
+      email: this.email?.value,
+      password: this.password?.value,
+      confirmPassword: this.confirmPassword?.value
+    };
+
+    this.authService.register(register)
+    .subscribe(res => {
+      this.router.navigate(['/login']);
+    }, error => {
+      alert(error);
+    })
+
   }
 
 }
