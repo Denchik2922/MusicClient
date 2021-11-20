@@ -8,49 +8,47 @@ import { retry, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class MusicianService {
+export class MusicApiService<T> {
   AppUrl:string;
-  ApiUrl:string;
 
   constructor(private http: HttpClient) {
     this.AppUrl = environment.appUrl;
-    this.ApiUrl = "/api/musical/";
   }
 
-  getMusicians() : Observable<Musician[]>{
-    return this.http.get<Musician[]>(this.AppUrl + this.ApiUrl)
+  getEntities(ApiUrl: string) : Observable<T[]>{
+    return this.http.get<T[]>(this.AppUrl + ApiUrl)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
 
-  getMusician(id: number) : Observable<Musician>{
-    return this.http.get<Musician>(this.AppUrl + this.ApiUrl + id)
+  getEntity(id: number, ApiUrl: string) : Observable<T>{
+    return this.http.get<T>(this.AppUrl + ApiUrl + id)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
 
-  addMusician(musician: Musician){
-    return this.http.post<Musician>(this.AppUrl + this.ApiUrl, musician)
+  addEntity(entity: T, ApiUrl: string){
+    return this.http.post<T>(this.AppUrl + ApiUrl, entity)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
 
-  updateMusician(musician: Musician){
-    return this.http.put<Musician>(this.AppUrl + this.ApiUrl, musician)
+  updateEntity(entity: T, ApiUrl: string){
+    return this.http.put<T>(this.AppUrl + ApiUrl, entity)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
 
-  deleteMusician(id: number){
-    return this.http.delete<Musician>(this.AppUrl + this.ApiUrl + "?id=" +id)
+  deleteEntity(id: number, ApiUrl: string){
+    return this.http.delete<T>(this.AppUrl + ApiUrl + "?id=" +id)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
@@ -69,6 +67,5 @@ export class MusicianService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
 
 }

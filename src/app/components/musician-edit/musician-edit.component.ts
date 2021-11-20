@@ -6,10 +6,8 @@ import { Genre } from 'src/app/models/Genre';
 import { Group } from 'src/app/models/Group';
 import { Musician } from 'src/app/models/Musician';
 import { MusicInstrument } from 'src/app/models/MusicInstrument';
-import { GenreService } from 'src/app/services/genre.service';
-import { GroupService } from 'src/app/services/group.service';
-import { MusicInstrumentsService } from 'src/app/services/music-instruments.service';
-import { MusicianService } from 'src/app/services/musician.service';
+import { MusicApiService } from 'src/app/services/music-api.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -20,17 +18,17 @@ import { MusicianService } from 'src/app/services/musician.service';
 export class MusicianEditComponent implements OnInit {
   public musicianId: number;
   public form: FormGroup;
-  public groups: Observable<Group[]>
-  public musicInstruments: Observable<MusicInstrument[]>
-  public genres: Observable<Genre[]>
+  public groups: Observable<Group[]>;
+  public musicInstruments: Observable<MusicInstrument[]>;
+  public genres: Observable<Genre[]>;
 
-  constructor(private groupService: GroupService,
-              private musicianService: MusicianService,
+  constructor(private groupService: MusicApiService<Group>,
+              private musicianService: MusicApiService<Musician>,
               private formBuilder: FormBuilder,
               private router: Router,
               private avRoute: ActivatedRoute,
-              private genreService: GenreService,
-              private instrumentsService: MusicInstrumentsService) 
+              private genreService: MusicApiService<Genre>,
+              private instrumentsService: MusicApiService<MusicInstrument>) 
   { 
 
     if (this.avRoute.snapshot.params['id']) {
@@ -82,14 +80,14 @@ export class MusicianEditComponent implements OnInit {
       genres: this.genre?.value.map((val:any) =>({ id:val} as Genre))
     };
 
-    this.musicianService.updateMusician(musician)
+    this.musicianService.updateEntity(musician, environment.musicianUrl )
     .subscribe(res => {
       this.router.navigate(['/musician', this.musicianId]);
     })
   }
 
   loadMusician(){
-    this.musicianService.getMusician(this.musicianId)
+    this.musicianService.getEntity(this.musicianId, environment.musicianUrl)
     .subscribe(res => {
       this.form.controls["firstName"].setValue(res.firstName);
       this.form.controls["lastName"].setValue(res.lastName);
@@ -101,15 +99,15 @@ export class MusicianEditComponent implements OnInit {
   }
   
   loadMusicInstruments(){
-    this.musicInstruments = this.instrumentsService.getInstruments();
+    this.musicInstruments = this.instrumentsService.getEntities(environment.instrumentUrl);
   }
 
   loadGenres(){
-    this.genres = this.genreService.getGenres();
+    this.genres = this.genreService.getEntities(environment.genreUrl);
    }
 
   loadGroups(){
-   this.groups = this.groupService.getGroups();
+   this.groups = this.groupService.getEntities(environment.groupUrl);
   }
 
 }

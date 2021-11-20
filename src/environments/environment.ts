@@ -4,7 +4,13 @@
 
 export const environment = {
   production: false,
-  appUrl: 'https://localhost:5001'
+  appUrl: 'https://localhost:5001',
+  musicianUrl: '/api/musical/',
+  groupUrl: '/api/group/',
+  genreUrl: '/api/genre/',
+  instrumentUrl: '/api/MusicInstrument/', 
+  
+
 };
 
 /*

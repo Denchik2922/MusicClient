@@ -6,10 +6,8 @@ import { Genre } from 'src/app/models/Genre';
 import { Group } from 'src/app/models/Group';
 import { Musician } from 'src/app/models/Musician';
 import { MusicInstrument } from 'src/app/models/MusicInstrument';
-import { GenreService } from 'src/app/services/genre.service';
-import { GroupService } from 'src/app/services/group.service';
-import { MusicInstrumentsService } from 'src/app/services/music-instruments.service';
-import { MusicianService } from 'src/app/services/musician.service';
+import { MusicApiService } from 'src/app/services/music-api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-musician-add',
@@ -23,10 +21,10 @@ export class MusicianAddComponent implements OnInit {
   public musicInstruments: Observable<MusicInstrument[]>;
   public genres: Observable<Genre[]>;
 
-  constructor(private groupService: GroupService,
-              private musicianService: MusicianService,
-              private genreService: GenreService,
-              private instrumentsService: MusicInstrumentsService,
+  constructor(private groupService: MusicApiService<Group>,
+              private musicianService: MusicApiService<Musician>,
+              private genreService:  MusicApiService<Genre>,
+              private instrumentsService:  MusicApiService<MusicInstrument>,
               private formBuilder: FormBuilder,
               private router: Router) 
   { 
@@ -62,7 +60,6 @@ export class MusicianAddComponent implements OnInit {
 
   add(): void{
     if(!this.form.valid){
-      console.log(this.instrument?.value.map((val:any) =>({ id:val} as MusicInstrument)));
       return;
     } 
     
@@ -76,21 +73,21 @@ export class MusicianAddComponent implements OnInit {
       genres: this.genre?.value.map((val:any) =>({ id:val} as Genre))
     };
 
-    this.musicianService.addMusician(musician)
+    this.musicianService.addEntity(musician, environment.musicianUrl)
     .subscribe(res => {
       this.router.navigate(['/musicians']);
     })
   }
 
   loadMusicInstruments(){
-    this.musicInstruments = this.instrumentsService.getInstruments();
+    this.musicInstruments = this.instrumentsService.getEntities(environment.instrumentUrl);
   }
 
   loadGenres(){
-    this.genres = this.genreService.getGenres();
+    this.genres = this.genreService.getEntities(environment.genreUrl);
    }
 
   loadGroups(){
-   this.groups = this.groupService.getGroups();
+   this.groups = this.groupService.getEntities(environment.groupUrl);
   }
 }

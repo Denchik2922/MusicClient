@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Genre } from 'src/app/models/Genre';
-import { GenreService } from 'src/app/services/genre.service';
+import { MusicApiService } from 'src/app/services/music-api.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-genres',
@@ -12,14 +13,14 @@ export class GenresComponent implements OnInit {
 
   public genres: Observable<Genre[]>;
 
-  constructor(private genresService:GenreService) { }
+  constructor(private genresService:MusicApiService<Genre>) { }
 
   ngOnInit(): void {
     this.loadMusicians();
   }
 
   loadMusicians(){
-    this.genres = this.genresService.getGenres();
+    this.genres = this.genresService.getEntities(environment.genreUrl);
   }
 
 }

@@ -14,14 +14,18 @@
       
       <p>Music Instrument</p> 
       <div class="genre">
-        <h3 *ngFor="let instrument of (musician.musicInstruments)">{{instrument.name}}</h3>
+        <ul>
+          <li *ngFor="let instrument of (musician.musicInstruments)">{{instrument.name}}</li>
+        </ul>
         <h3 *ngIf="musician.musicInstruments.length == 0">None</h3>
       </div> 
       <hr class="col-3 col-md-2 mb-5">
 
       <p>Genres</p>  
       <div class="genre">
-        <h3 *ngFor="let genre of (musician.genres)">{{genre.name}}</h3>
+        <ul>
+          <li *ngFor="let genre of (musician.genres)">{{genre.name}}</li>
+        </ul>
         <h3 *ngIf="musician.genres.length == 0">None</h3>
       </div>
       

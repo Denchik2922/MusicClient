@@ -12,6 +12,10 @@ export class HeaderComponent implements OnInit {
     return this.authService.isAuth();
   }
 
+  public get userName() : string{
+    return this.authService.getUserName();
+  }
+
   constructor(private authService: AuthService) {
 
   }

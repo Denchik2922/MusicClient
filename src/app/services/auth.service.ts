@@ -40,6 +40,20 @@ export class AuthService {
     )
   }
 
+  getUserName() : string {
+    let token = localStorage.getItem(ACCESS_TOKEN_KEY);
+    if(token != null && this.isAuth()){
+      let decodedJWT = JSON.parse(window.atob(token!.split('.')[1]));
+      if(decodedJWT.role?.toLowerCase() == 'admin'){
+        return (decodedJWT.unique_name + "(" + decodedJWT.role + ")") as string;
+      }
+      else{
+        return decodedJWT.unique_name as string;
+      }
+    }
+    return "";
+  }
+
   isAuth(): boolean{
     var token = localStorage.getItem(ACCESS_TOKEN_KEY);
     return !!(token && !this.jwtHelper.isTokenExpired(token));
@@ -48,11 +62,14 @@ export class AuthService {
   isAdmin() : boolean{
     let token = localStorage.getItem(ACCESS_TOKEN_KEY);
     if(token != null){
+     
       let decodedJWT = JSON.parse(window.atob(token!.split('.')[1]));
       return decodedJWT.role?.toLowerCase() == 'admin' && this.isAuth();
     }
     return false;
   }
+
+
 
   logout():void{
     localStorage.removeItem(ACCESS_TOKEN_KEY);
