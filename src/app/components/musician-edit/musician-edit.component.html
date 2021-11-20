@@ -1,0 +1,107 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2>Edit musician</h2>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-6 col-lg-6">
+          <form [formGroup]="form" (ngSubmit)="edit()" novalidate>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-8">
+                <label for="firstName" class="form-label">First Name</label>
+                <input type="text" class="form-control" id="firstName"  formControlName="firstName">
+                <div class="text-danger ml-3" *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+                    <div *ngIf="firstName?.errors?.['required']">
+                      First Name is required.
+                    </div>
+                    <div *ngIf="firstName?.errors?.['pattern']">
+                      First Name must be only letters.
+                    </div>
+                    <div *ngIf="firstName?.errors?.['minlength']">
+                      First Name must be at least 2 characters long.
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="lastName" class="form-label">Last Name</label>
+                <input type="text" class="form-control" id="lastName"  formControlName="lastName">
+                <div class="text-danger ml-3" *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+                  <div *ngIf="lastName?.errors?.['required']">
+                    Last Name is required.
+                  </div>
+                  <div *ngIf="lastName?.errors?.['pattern']">
+                    Last Name must be only letters.
+                  </div>
+                  <div *ngIf="lastName?.errors?.['minlength']">
+                    Last Name must be at least 2 characters long.
+                  </div>
+              </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="country" class="form-label">Country</label>
+                <input type="text" class="form-control" id="country"  formControlName="country">
+                <div class="text-danger ml-3" *ngIf="country?.invalid && (country?.dirty || country?.touched)">
+                    <div *ngIf="country?.errors?.['required']">
+                    Country is required.
+                    </div>
+                    <div *ngIf="country?.errors?.['pattern']">
+                      Country must be only letters.
+                    </div>
+                    <div *ngIf="country?.errors?.['minlength']">
+                      Country must be at least 4 characters long.
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="musicInstruments" class="form-label">Music Instruments</label>
+                <select multiple name="musicInstruments" class="form-select" id="musicInstruments" formControlName="musicInstruments">
+                  <option *ngFor="let instrument of (musicInstruments | async)" [value]="instrument.id"> {{instrument.name}}</option>
+                </select>
+                <div class="text-danger ml-3" *ngIf="instrument?.invalid && (instrument?.dirty || instrument?.touched)">
+                  <div *ngIf="instrument?.errors?.['required']">
+                    Instruments is required.
+                  </div>
+              </div>
+
+              </div>
+              <div class="col-sm-8">
+                <label for="genres" class="form-label">Genres</label>
+                <select multiple name="genres" class="form-select" id="genres" formControlName="genres">
+                  <option *ngFor="let genre of (genres | async)" [value]="genre.id"> {{genre.name}}</option>
+                </select>
+                <div class="text-danger ml-3" *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)">
+                  <div *ngIf="genre?.errors?.['required']">
+                   Genre is required.
+                  </div>
+              </div>
+            </div>
+
+
+              <div class="col-sm-8">
+                <label for="group" class="form-label">Group</label>
+                <select name="group" class="form-select" id="group" formControlName="group">
+                  <option *ngFor="let group of (groups | async)" value="{{group.id}}"> {{group.name}}</option>
+                  
+                </select>
+                <div class="text-danger ml-3" *ngIf="group?.invalid && (group?.dirty || group?.touched)">
+                  <div *ngIf="group?.errors?.['required']">
+                   Group is required.
+                  </div>
+                </div>
+              </div>
+            
+              <hr class="my-4">
+              <div class="row justify-content-md-center">
+              <button class="btn btn-primary col-3 center" type="submit">Edit</button>
+              </div>
+              
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </main>
+</div>

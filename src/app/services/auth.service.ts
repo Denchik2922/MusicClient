@@ -49,7 +49,7 @@ export class AuthService {
     let token = localStorage.getItem(ACCESS_TOKEN_KEY);
     if(token != null){
       let decodedJWT = JSON.parse(window.atob(token!.split('.')[1]));
-      return decodedJWT.role?.toLowerCase() == 'admin';
+      return decodedJWT.role?.toLowerCase() == 'admin' && this.isAuth();
     }
     return false;
   }

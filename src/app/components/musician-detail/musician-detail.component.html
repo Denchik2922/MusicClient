@@ -1,6 +1,7 @@
 <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <div>
-      <button type="button" class="btn btn-danger" (click) = 'deleteMusician()'>Delete</button>
+    <div class="buttons_block">
+      <button type="button" class="btn btn-danger" (click) = 'deleteMusician()' *ngIf='isAdmin'>Delete</button>
+      <button type="button" class="btn buttons btn-warning" [routerLink]="['/musician/edit', musician.id]" *ngIf='isAdmin'>Edit</button>
     </div>
     <main>
       <p>Name</p>  
@@ -11,12 +12,23 @@
       <h3>{{musician.country}}</h3>
       <hr class="col-3 col-md-2 mb-5">
       
-      <p>Music Instrument</p>  
-      <h3 *ngFor="let instrument of (musician.musicInstruments)">{{instrument.name}}</h3>
+      <p>Music Instrument</p> 
+      <div class="genre">
+        <h3 *ngFor="let instrument of (musician.musicInstruments)">{{instrument.name}}</h3>
+        <h3 *ngIf="musician.musicInstruments.length == 0">None</h3>
+      </div> 
       <hr class="col-3 col-md-2 mb-5">
 
       <p>Genres</p>  
-      <h3 *ngFor="let genre of (musician.genres)">{{genre.name}}</h3>
+      <div class="genre">
+        <h3 *ngFor="let genre of (musician.genres)">{{genre.name}}</h3>
+        <h3 *ngIf="musician.genres.length == 0">None</h3>
+      </div>
+      
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Group</p>  
+      <h3>{{group.name}}</h3>
       <hr class="col-3 col-md-2 mb-5">
 
 

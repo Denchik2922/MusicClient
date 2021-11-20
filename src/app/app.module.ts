@@ -13,6 +13,10 @@ import { ACCESS_TOKEN_KEY } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegisterComponent } from './components/register/register.component';
+import { MusicianAddComponent } from './components/musician-add/musician-add.component';
+import { MusicianEditComponent } from './components/musician-edit/musician-edit.component';
+import { AdminGuard } from './guards/admin.guard';
+
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
@@ -26,7 +30,9 @@ export function tokenGetter(){
     HeaderComponent,
     MusicianDetailComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    MusicianAddComponent,
+    MusicianEditComponent
 
   ],
   imports: [
@@ -42,7 +48,7 @@ export function tokenGetter(){
       }
     })
   ],
-  providers: [],
+  providers: [AdminGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

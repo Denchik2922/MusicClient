@@ -4,59 +4,37 @@ import { Observable, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Musician } from '../models/Musician';
 import { retry, catchError } from 'rxjs/operators';
+import { Group } from '../models/Group';
 
 @Injectable({
   providedIn: 'root'
 })
-export class MusicianService {
+export class GroupService {
+
   AppUrl:string;
   ApiUrl:string;
 
   constructor(private http: HttpClient) {
     this.AppUrl = environment.appUrl;
-    this.ApiUrl = "/api/musical/";
+    this.ApiUrl = "/api/group/";
   }
 
-  getMusicians() : Observable<Musician[]>{
-    return this.http.get<Musician[]>(this.AppUrl + this.ApiUrl)
+  getGroups() : Observable<Group[]>{
+    return this.http.get<Group[]>("https://localhost:5001/api/Group")
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
 
-  getMusician(id: number) : Observable<Musician>{
-    return this.http.get<Musician>(this.AppUrl + this.ApiUrl + id)
+  getGroup(id: number) : Observable<Group>{
+    return this.http.get<Group>(this.AppUrl + this.ApiUrl + id)
     .pipe(
       retry(1),
       catchError(this.errorHandler)
     );
   }
-
-  addMusician(musician: Musician){
-    return this.http.post<Musician>(this.AppUrl + this.ApiUrl, musician)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandler)
-    );
-  }
-
-  updateMusician(musician: Musician){
-    return this.http.put<Musician>(this.AppUrl + this.ApiUrl, musician)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandler)
-    );
-  }
-
-  deleteMusician(id: number){
-    return this.http.delete<Musician>(this.AppUrl + this.ApiUrl + "?id=" +id)
-    .pipe(
-      retry(1),
-      catchError(this.errorHandler)
-    );
-  }
-
+  
   errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -69,6 +47,4 @@ export class MusicianService {
     console.log(errorMessage);
     return throwError(errorMessage);
   }
-
-
 }
