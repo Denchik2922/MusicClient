@@ -1,4 +1,5 @@
 import { Genre } from "./Genre";
+import { MusicAlbum } from "./MusicAlbum";
 import { Musician } from "./Musician";
 
 export interface Group {
@@ -6,5 +7,6 @@ export interface Group {
     name: string;  
     country: string;
     members: Musician[]; 
+    musicAlbums: MusicAlbum[];
     genres: Genre[];
 }

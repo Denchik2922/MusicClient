@@ -1,0 +1,24 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+            <div class="col" *ngFor="let song of (songs | async)">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{song.name}}</h5>
+                        <p>{{song.released | date}}</p> 
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-warning btn-sm" [routerLink]="['/song/edit', song.id]" *ngIf='isAdmin'>Edit</button>
+                        <button type="button" class="btn btn-danger btn-sm" (click)="deleteSong(song.id)"  *ngIf='isAdmin'>Delete</button>    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <button type="button" class="btn btn-success" [routerLink]="['/song/add']" *ngIf='isAdmin'>Add new song</button>
+            </div>
+        </div>
+    </div>
+</div>

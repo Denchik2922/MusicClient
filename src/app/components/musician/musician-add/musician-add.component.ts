@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Genre } from 'src/app/models/Genre';
@@ -16,6 +16,7 @@ import { environment } from 'src/environments/environment';
 })
 export class MusicianAddComponent implements OnInit {
 
+  
   public form: FormGroup;
   public groups: Observable<Group[]>;
   public musicInstruments: Observable<MusicInstrument[]>;
@@ -75,7 +76,7 @@ export class MusicianAddComponent implements OnInit {
 
     this.musicianService.addEntity(musician, environment.musicianUrl)
     .subscribe(res => {
-      this.router.navigate(['/musicians']);
+      this.router.navigate(['/musician']);
     })
   }
 

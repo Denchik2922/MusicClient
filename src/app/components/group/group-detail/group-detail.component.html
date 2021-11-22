@@ -1,0 +1,43 @@
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+    <div class="buttons_block">
+      <button type="button" class="btn btn-danger" (click) = 'deleteGroup()' *ngIf='isAdmin'>Delete</button>
+      <button type="button" class="btn buttons btn-warning" [routerLink]="['/group/edit', group.id]" *ngIf='isAdmin'>Edit</button>
+    </div>
+    <main>
+      <p>Name</p>  
+      <h3>{{group.name}}</h3>
+      <hr class="col-3 col-md-2 mb-5">
+        
+      <p>Country</p>  
+      <h3>{{group.country}}</h3>
+      <hr class="col-3 col-md-2 mb-5">
+      
+      <p>Members</p> 
+      <div class="genre">
+        <ul>
+          <li *ngFor="let member of (group.members)">{{member.firstName}} {{member.lastName}}</li>
+        </ul>
+        <h3 *ngIf="group.members.length == 0">None</h3>
+      </div> 
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Albums</p> 
+      <div class="genre">
+        <ul>
+          <li *ngFor="let album of (group.musicAlbums)">{{album.name}}</li>
+        </ul>
+        <h3 *ngIf="group.musicAlbums.length == 0">None</h3>
+      </div> 
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Genres</p>  
+      <div class="genre">
+        <ul>
+          <li *ngFor="let genre of (group.genres)">{{genre.name}}</li>
+        </ul>
+        <h3 *ngIf="group.genres.length == 0">None</h3>
+      </div>
+      
+      <hr class="col-3 col-md-2 mb-5">
+    </main>
+</div>

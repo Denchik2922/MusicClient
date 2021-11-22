@@ -1,0 +1,22 @@
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col" *ngFor="let album of (albums | async)">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{album.name}}</h5>
+                        <p>{{album.released | date }}</p>
+                        <a  [routerLink]="['/album', album.id]">View details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-3">
+                <button type="button" class="btn btn-success" [routerLink]="['/album/add']" *ngIf='isAdmin'>Add new album</button>
+            </div>
+            
+        </div>
+    </div>
+</div>

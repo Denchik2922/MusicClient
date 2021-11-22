@@ -1,0 +1,85 @@
+<div class="container">
+    <main>
+      <div class="py-5 text-center">
+        <h2>Add new album</h2>
+      </div>
+      <div class="row justify-content-md-center">
+        <div class="col-md-6 col-lg-6">
+          <form [formGroup]="form" (ngSubmit)="add()" novalidate>
+            <div class="row justify-content-md-center">
+              <div class="col-sm-8">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name"  formControlName="name">
+                <div class="text-danger ml-3" *ngIf="name?.invalid && (name?.dirty || name?.touched)">
+                    <div *ngIf="name?.errors?.['required']">
+                        Name is required.
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="released" class="form-label">Released</label>
+                <input type="date" class="form-control" id="released"  formControlName="released">
+                <div class="text-danger ml-3" *ngIf="released?.invalid && (released?.dirty || released?.touched)">
+                    <div *ngIf="released?.errors?.['required']">
+                        Released is required.
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="length" class="form-label">Length</label>
+                <input type="text" placeholder="hours:minutes:seconds" class="form-control" id="length"  formControlName="length">
+                <div class="text-danger ml-3" *ngIf="length?.invalid && (length?.dirty || length?.touched)">
+                    <div *ngIf="length?.errors?.['required']">
+                        Length is required.
+                    </div>
+                </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="songs" class="form-label">Songs</label>
+                <select multiple name="songs" class="form-select" id="songs" formControlName="songs">
+                  <option *ngFor="let song of (songs | async)" [value]="song.id">{{song.name}}</option>
+                </select>
+              </div>
+              
+              <div class="col-sm-8">
+                <label for="genres" class="form-label">Genres</label>
+                <select multiple name="genres" class="form-select" id="genres" formControlName="genres">
+                  <option *ngFor="let genre of (genres | async)" [value]="genre.id"> {{genre.name}}</option>
+                </select>
+                <div class="text-danger ml-3" *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)">
+                  <div *ngIf="genre?.errors?.['required']">
+                   Genre is required.
+                  </div>
+              </div>
+
+              <div class="col-sm-8">
+                <label for="group" class="form-label">Group</label>
+                <select name="group" class="form-select" id="group" formControlName="group">
+                  <option *ngFor="let group of (groups | async)" value="{{group.id}}"> {{group.name}}</option>
+                  
+                </select>
+                <div class="text-danger ml-3" *ngIf="group?.invalid && (group?.dirty || group?.touched)">
+                  <div *ngIf="group?.errors?.['required']">
+                   Group is required.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            
+              <hr class="my-4">
+              <div class="row justify-content-md-center">
+              <button class="btn btn-primary col-3 center" type="submit">Add</button>
+              </div>
+              
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </main>
+</div>

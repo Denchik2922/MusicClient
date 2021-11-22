@@ -9,8 +9,8 @@ export const environment = {
   groupUrl: '/api/group/',
   genreUrl: '/api/genre/',
   instrumentUrl: '/api/MusicInstrument/', 
-  
-
+  albumUrl: '/api/MusicAlbum/', 
+  songUrl: '/api/Song/'
 };
 
 /*

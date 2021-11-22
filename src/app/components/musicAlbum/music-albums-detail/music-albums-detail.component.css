@@ -1,0 +1,15 @@
+.buttons{
+
+    margin: 0px 10px 0px 10px;
+}
+.genre{
+    display: flex;
+}
+.bi{
+    margin: 8px 10px 8px 10px;
+}
+ul{
+    list-style-type: none;
+    padding: 0;
+    font-size: 30px;
+}

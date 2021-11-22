@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { GenresComponent } from './components/genres/genres.component';
 import { LoginComponent } from './components/login/login.component';
-import { MusicianAddComponent } from './components/musician-add/musician-add.component';
-import { MusicianDetailComponent } from './components/musician-detail/musician-detail.component';
-import { MusicianEditComponent } from './components/musician-edit/musician-edit.component';
-import { MusiciansComponent } from './components/musicians/musicians.component';
+import { MusiciansComponent } from './components/musician/musicians/musicians.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AdminGuard } from './guards/admin.guard';
+
 
 const routes: Routes = [
   { path: 'login', component:  LoginComponent },
-  { path: 'register', component:  RegisterComponent },
-  { path: 'musicians', component:  MusiciansComponent },
-  { path: 'musician/add', component:  MusicianAddComponent, canActivate: [AdminGuard] },
-  { path: 'musician/:id', component:  MusicianDetailComponent},
-  { path: 'musician/edit/:id', component:  MusicianEditComponent, canActivate: [AdminGuard] },
-  { path: 'genres', component:  GenresComponent },
+  { path: 'register', component:  RegisterComponent },  
+  { path: 'musician', loadChildren: () => import("./modules/musician/musician.module").then(m => m.MusicianModule) },
+  { path: 'group', loadChildren: () => import("./modules/group/group.module").then(m => m.GroupModule) },
+  { path: 'album', loadChildren: () => import("./modules/music-album/music-album.module").then(m => m.MusicAlbumModule) },
+  { path: 'genre', loadChildren: () => import("./modules/genre/genre.module").then(m => m.GenreModule) },
+  { path: 'song', loadChildren: () => import("./modules/song/song.module").then(m => m.SongModule) },
+  { path: 'instrument', loadChildren: () => import("./modules/music-instrument/music-instrument.module").then(m => m.MusicInstrumentModule) },
   { path: '', component: MusiciansComponent, pathMatch: 'full' },
   { path: '**', redirectTo: '/' }
 ];
