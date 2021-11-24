@@ -1,0 +1,8 @@
+.events ul li{
+    cursor: pointer;
+}
+
+.events ul li:hover{
+    background: #0d6efd;
+    color: white;
+}

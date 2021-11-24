@@ -1,22 +1,39 @@
 <div class="album py-5 bg-light">
     <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col" *ngFor="let musician of (musicians | async)">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{musician.firstName}}</h5>
-                        <p class="card-text">{{musician.lastName}}</p>
-                        <a  [routerLink]="['/musician', musician.id]" >View details</a>
+        <div class="row">
+
+            <div class="col-3">
+                <div class="row">
+                    <app-statistics></app-statistics>
+                </div>
+            </div>   
+            
+
+            <div class="col-6">
+                <div class="row">
+                    <div class="col" *ngFor="let musician of (musicians | async)">
+                        <div class="card" style="width: 18rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{musician.firstName}}</h5>
+                                <p class="card-text">{{musician.lastName}}</p>
+                                <a  [routerLink]="['/musician', musician.id]" >View details</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
+                <hr>
+                <div class="row">
+                    <div class="col-3">
+                        <button type="button" class="btn btn-success" [routerLink]="['/musician/add']" *ngIf='isAdmin'>Add new musician</button>
+                    </div>
+                </div>
+            </div>     
+
             <div class="col-3">
-                <button type="button" class="btn btn-success" [routerLink]="['/musician/add']" *ngIf='isAdmin'>Add new musician</button>
-            </div>
-            
+                <div class="row">
+                    <app-events></app-events>
+                </div>
+            </div>     
         </div>
     </div>
 </div>

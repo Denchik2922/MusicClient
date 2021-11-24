@@ -1,0 +1,34 @@
+<div class="events">
+    <h4>Statistics</h4>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <h5 class="text-primary">Average cost of concerts for today</h5>
+            <h5> {{avarageCost}}</h5>
+            <p class="text-danger" *ngIf="avarageCost == null">Sorry! The average cost is not yet available</p>
+        </li>
+        <li class="list-group-item">
+            <h5 class="text-primary">Top musical instruments</h5>
+            <ol>
+                <li *ngFor="let instrument of instruments">
+                    <h5>{{instrument.name}}</h5>
+                    <p>Used by musicians: <span class="badge bg-primary rounded-pill">{{instrument.musiciansUsed}}</span></p>
+                </li>
+            </ol>
+            <p class="text-danger" *ngIf="instruments?.length == 0">Sorry! The musical instruments is not yet available</p>
+        </li>
+        <li class="list-group-item">
+            <h5 class="text-primary">Countries with most popular types musicians</h5>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" *ngFor="let con of countryMisician">
+                    <h5>{{con.country}}</h5>
+                    <ol>
+                        <li *ngFor="let musician of (con.musician)">
+                            <h5>{{musician.instrument}} <span class="badge bg-primary rounded-pill">{{musician.count}}</span></h5>  
+                        </li>
+                    </ol>
+                    <p class="text-danger" *ngIf="countryMisician?.length == 0">Sorry! The types musicians is not yet available</p>
+                </li>
+            </ul>
+        </li>
+      </ul>
+</div>

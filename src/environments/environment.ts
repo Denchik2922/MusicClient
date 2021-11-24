@@ -10,7 +10,9 @@ export const environment = {
   genreUrl: '/api/genre/',
   instrumentUrl: '/api/MusicInstrument/', 
   albumUrl: '/api/MusicAlbum/', 
-  songUrl: '/api/Song/'
+  songUrl: '/api/Song/',
+  eventUrl: "/api/Concert/",
+  statisticUrl: "/api/Statistic/"
 };
 
 /*

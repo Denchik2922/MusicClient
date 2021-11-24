@@ -1,0 +1,33 @@
+<div class="col-lg-8 mx-auto p-3 py-md-5">
+    <main>
+      <p>Title</p>  
+      <h3>{{concert.title}}</h3>
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Date and time</p>
+      <h3>{{concert.datetime_Local | date : 'medium'}}</h3>
+      <hr class="col-3 col-md-2 mb-5">
+        
+      <p>Popularity</p>
+      <h3>{{concert.popularity | number : '1.1-1'}} / 1</h3>
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Venue</p>
+      <h3>{{concert.venue.display_location}}</h3>
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Price</p>
+      <h6>Average Price: {{concert.stats.average_Price}}$</h6>
+      <h6>Lowest Price: {{concert.stats.lowest_Price}}$</h6>
+      <h6>Highest Price: {{concert.stats.highest_Price}}$</h6> 
+      <hr class="col-3 col-md-2 mb-5">
+
+      <p>Listing Count</p>
+      <h5>{{concert.stats.listing_Count}}</h5>
+      <hr class="col-3 col-md-2 mb-5">
+
+      <a class="btn btn-primary" href="{{concert.url}}">Buy ticket</a>
+
+
+    </main>
+</div>

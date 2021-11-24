@@ -32,6 +32,9 @@ import { MusiciansComponent } from './components/musician/musicians/musicians.co
 import { MusicianAddComponent } from './components/musician/musician-add/musician-add.component';
 import { MusicianDetailComponent } from './components/musician/musician-detail/musician-detail.component';
 import { MusicianEditComponent } from './components/musician/musician-edit/musician-edit.component';
+import { EventsComponent } from './components/event/events/events.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { EventDetailComponent } from './components/event/event-detail/event-detail.component';
 
 export function tokenGetter(){
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -64,7 +67,10 @@ export function tokenGetter(){
     MusiciansComponent,
     MusicianAddComponent,
     MusicianDetailComponent,
-    MusicianEditComponent
+    MusicianEditComponent,
+    EventsComponent,
+    StatisticsComponent,
+    EventDetailComponent
   ],
   imports: [
     BrowserModule,
