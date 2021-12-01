@@ -73,13 +73,13 @@ export class SongEditComponent implements OnInit {
       name: this.name?.value,
       released: this.released?.value,
       length: this.length?.value,
-      genres: this.genre?.value.map((val:any) => ({ id:val} as Genre)),
+      genres: this.genre?.value,
       musicAlbumId: this.album?.value
     };
 
     this.songService.updateEntity(song, environment.songUrl)
     .subscribe(res => {
-      this.router.navigate(['/songs']);
+      this.router.navigate(['/song']);
     })
   }
 
@@ -90,8 +90,12 @@ export class SongEditComponent implements OnInit {
       this.form.controls["released"].setValue(this.datepipe.transform(res.released, 'yyyy-MM-dd'));
       this.form.controls["length"].setValue(res.length);
       this.form.controls["musicAlbum"].setValue(res.musicAlbumId);
-      this.form.controls["genres"].setValue(Array.from(res.genres, g => g.id));
+      this.form.controls["genres"].setValue(res.genres);
     })
+  }
+
+  compareFn(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   
   loadGenres(){

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Concert } from 'src/app/models/Concert';
 import { EventService } from 'src/app/services/event.service';
 
@@ -11,17 +12,28 @@ export class EventsComponent implements OnInit {
 
   public concerts: Concert[]
 
-  constructor(private eventService:EventService) { }
+  constructor(private eventService:EventService,
+              private router: Router) {
+
+                console.log("constructor")
+              }
 
   ngOnInit(): void {
     this.loadConcerts();
+    console.log(" ngOnInit")
   }
 
   loadConcerts(){
     this.eventService.getConcerts()
-    .subscribe(res => {this.concerts = res.sort((b, a) => {
-      return <any>new Date(b.datetime_Local) - <any>new Date(a.datetime_Local)});
-  });
+    .subscribe(res =>{
+      this.concerts = res;
+    })
   }
+  
+  goToPage(id:any) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/event', id]);
+ }
 
 }

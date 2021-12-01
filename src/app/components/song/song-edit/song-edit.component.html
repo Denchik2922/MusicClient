@@ -1,10 +1,10 @@
-<div class="container">
+
     <main>
       <div class="py-5 text-center">
         <h2>Edit song</h2>
       </div>
       <div class="row justify-content-md-center">
-        <div class="col-md-6 col-lg-6">
+        <div class="col">
           <form [formGroup]="form" (ngSubmit)="edit()" novalidate>
             <div class="row justify-content-md-center">
               <div class="col-sm-8">
@@ -39,8 +39,8 @@
               
               <div class="col-sm-8">
                 <label for="genres" class="form-label">Genres</label>
-                <select multiple name="genres" class="form-select" id="genres" formControlName="genres">
-                  <option *ngFor="let genre of (genres | async)" [value]="genre.id"> {{genre.name}}</option>
+                <select [compareWith]="compareFn" multiple name="genres" class="form-select" id="genres" formControlName="genres">
+                  <option *ngFor="let genre of (genres | async)" [ngValue]="genre"> {{genre.name}}</option>
                 </select>
                 <div class="text-danger ml-3" *ngIf="genre?.invalid && (genre?.dirty || genre?.touched)">
                   <div *ngIf="genre?.errors?.['required']">
@@ -75,4 +75,3 @@
         </div>
       </div>
     </main>
-</div>

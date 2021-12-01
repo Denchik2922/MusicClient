@@ -79,8 +79,8 @@ export class MusicAlbumsEditComponent implements OnInit {
       released: this.released?.value,
       length: this.length?.value,
       groupId: this.group?.value,
-      songs: this.song?.value.map((val:any) => ({ id:val} as Song)),
-      genres: this.genre?.value.map((val:any) => ({ id:val} as Genre))
+      songs: this.song?.value,
+      genres: this.genre?.value
     };
 
     this.albumService.updateEntity(album, environment.albumUrl)
@@ -96,9 +96,13 @@ export class MusicAlbumsEditComponent implements OnInit {
       this.form.controls["released"].setValue(this.datepipe.transform(res.released, 'yyyy-MM-dd'));
       this.form.controls["length"].setValue(res.length);
       this.form.controls["group"].setValue(res.groupId);
-      this.form.controls["songs"].setValue(Array.from(res.songs, i => i.id));
-      this.form.controls["genres"].setValue(Array.from(res.genres, g => g.id));
+      this.form.controls["songs"].setValue(res.songs);
+      this.form.controls["genres"].setValue(res.genres);
     })
+  }
+
+  compareFn(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   
   loadSongs(){

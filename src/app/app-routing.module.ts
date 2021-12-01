@@ -9,7 +9,7 @@ import { RegisterComponent } from './components/register/register.component';
 const routes: Routes = [
   { path: 'login', component:  LoginComponent },
   { path: 'register', component:  RegisterComponent },  
-  { path: 'event/:id', component:  EventDetailComponent },  
+  { path: 'event/:id', component:  EventDetailComponent},  
   { path: 'musician', loadChildren: () => import("./modules/musician/musician.module").then(m => m.MusicianModule) },
   { path: 'group', loadChildren: () => import("./modules/group/group.module").then(m => m.GroupModule) },
   { path: 'album', loadChildren: () => import("./modules/music-album/music-album.module").then(m => m.MusicAlbumModule) },

@@ -1,7 +1,5 @@
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
+        <div class="row">
             <div class="col" *ngFor="let instrument of (instruments | async)">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -20,5 +18,3 @@
                 <button type="button" class="btn btn-success" [routerLink]="['/instrument/add']" *ngIf='isAdmin'>Add new instrument</button>
             </div>
         </div>
-    </div>
-</div>

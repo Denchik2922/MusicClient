@@ -1,7 +1,4 @@
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
+        <div class="row">
             <div class="col" *ngFor="let song of (songs | async)">
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
@@ -20,5 +17,3 @@
                 <button type="button" class="btn btn-success" [routerLink]="['/song/add']" *ngIf='isAdmin'>Add new song</button>
             </div>
         </div>
-    </div>
-</div>

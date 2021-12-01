@@ -61,7 +61,7 @@ export class SongAddComponent implements OnInit {
       name: this.name?.value,
       released: this.released?.value,
       length: this.length?.value,
-      genres: this.genre?.value.map((val:any) => ({ id:val} as Genre)),
+      genres: this.genre?.value,
       musicAlbumId: this.album?.value
     };
 

@@ -1,20 +1,18 @@
-<div class="album py-5 bg-light">
-    <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-            <div class="col-md-3 col-lg-3" *ngFor="let group of (groups | async)">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">{{group.name}}</h5>
-                        <a  [routerLink]="['/group', group.id]">View details</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-3">
-                <button type="button" class="btn btn-success" [routerLink]="['/group/add']" *ngIf='isAdmin'>Add new group</button>
+
+<div class="row">
+    <div class="col" *ngFor="let group of (groups | async)">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{group.name}}</h5>
+                <a  [routerLink]="['/group', group.id]">View details</a>
             </div>
         </div>
     </div>
 </div>
+<hr>
+<div class="row">
+    <div class="col-3">
+        <button type="button" class="btn btn-success" [routerLink]="['/group/add']" *ngIf='isAdmin'>Add new group</button>
+    </div>
+</div>
+

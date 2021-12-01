@@ -65,9 +65,9 @@ export class GroupAddComponent implements OnInit {
       id: 0,
       name: this.name?.value,
       country: this.country?.value,
-      musicAlbums: this.album?.value.map((val:any) =>({ id:val} as MusicAlbum)),
-      members: this.member?.value.map((val:any) =>({ id:val} as Musician)),
-      genres: this.genre?.value.map((val:any) =>({ id:val} as Genre))
+      musicAlbums: this.album?.value,
+      members: this.member?.value,
+      genres: this.genre?.value?.map((val:any) =>({ id:val} as Genre))
     };
 
     this.groupService.addEntity(group, environment.groupUrl)

@@ -1,7 +1,7 @@
 <div class="events mb-3">
     <h4>Today's events</h4>
     <ul class="list-group list-group-flush">
-      <li [routerLink]="['/event', concert.id]" class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let concert of concerts">
+      <li (click)="goToPage(concert.id)" class="list-group-item d-flex justify-content-between lh-sm" *ngFor="let concert of concerts">
         <div>
           <h6 class="my-0">{{concert.title}}</h6>
           <p >{{concert.venue.display_location}}</p>
@@ -9,5 +9,6 @@
         </div>
         <span >{{concert.datetime_Local | date:"shortTime"}}</span>
       </li>
+      
     </ul>
 </div>

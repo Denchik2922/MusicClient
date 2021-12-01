@@ -71,8 +71,8 @@ export class GroupEditComponent implements OnInit {
       id: this.groupId,
       name: this.name?.value,
       country: this.country?.value,
-      musicAlbums: this.album?.value.map((val:any) =>({ id:val} as MusicAlbum)),
-      members: this.member?.value.map((val:any) =>({ id:val} as Musician)),
+      musicAlbums: this.album?.value,
+      members: this.member?.value,
       genres: this.genre?.value.map((val:any) =>({ id:val} as Genre))
     };
 
@@ -87,10 +87,14 @@ export class GroupEditComponent implements OnInit {
     .subscribe(res => {
       this.form.controls["name"].setValue(res.name);
       this.form.controls["country"].setValue(res.country);
-      this.form.controls["albums"].setValue(Array.from(res.musicAlbums, i => i.id));
-      this.form.controls["members"].setValue(Array.from(res.members, i => i.id));
+      this.form.controls["albums"].setValue(res.musicAlbums);
+      this.form.controls["members"].setValue(res.members);
       this.form.controls["genres"].setValue(Array.from(res.genres, g => g.id));
     })
+  }
+
+  compareFn(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   
   loadGenres(){

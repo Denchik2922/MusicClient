@@ -16,12 +16,17 @@ export class EventDetailComponent implements OnInit {
   constructor(private eventService: EventService,
               private avRoute: ActivatedRoute){
     if (this.avRoute.snapshot.params['id']) {
-      this.concertId = this.avRoute.snapshot.params['id'];
+      avRoute.params.subscribe(params=>this.concertId=params['id'])
+      console.log(this.concertId);
     }
   }
 
   ngOnInit(): void {
     this.loadConcert();
+    if (this.avRoute.snapshot.params['id']) {
+      this.avRoute.params.subscribe(params=>this.concertId=params['id'])
+      console.log(this.concertId);
+    }
   }
 
   loadConcert(){

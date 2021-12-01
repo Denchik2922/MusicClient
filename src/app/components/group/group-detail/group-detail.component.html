@@ -1,8 +1,9 @@
+<div class="bg-white mb-4">
+<div class="buttons_block">
+  <button type="button" class="btn btn-danger" (click) = 'deleteGroup()' *ngIf='isAdmin'>Delete</button>
+  <button type="button" class="btn buttons btn-warning" [routerLink]="['/group/edit', group.id]" *ngIf='isAdmin'>Edit</button>
+</div>
 <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <div class="buttons_block">
-      <button type="button" class="btn btn-danger" (click) = 'deleteGroup()' *ngIf='isAdmin'>Delete</button>
-      <button type="button" class="btn buttons btn-warning" [routerLink]="['/group/edit', group.id]" *ngIf='isAdmin'>Edit</button>
-    </div>
     <main>
       <p>Name</p>  
       <h3>{{group.name}}</h3>
@@ -40,4 +41,5 @@
       
       <hr class="col-3 col-md-2 mb-5">
     </main>
+</div>
 </div>

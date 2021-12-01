@@ -1,6 +1,31 @@
 
 <app-header></app-header>
 
-<router-outlet></router-outlet>
+<div class="album py-5 bg-light">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-3">
+                <div class="row">
+                    <app-statistics></app-statistics>
+                </div>
+            </div>   
+
+            <div class="col-6">
+                <router-outlet></router-outlet>  
+            </div>   
+
+            <div class="col-3">
+                <div class="row">
+                    <app-events></app-events>
+                </div>
+            </div>     
+        </div>
+    </div>
+</div>
+
+
+
+
 
 

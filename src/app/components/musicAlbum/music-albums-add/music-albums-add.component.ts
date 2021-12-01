@@ -70,8 +70,8 @@ export class MusicAlbumsAddComponent implements OnInit {
       released: this.released?.value,
       length: this.length?.value,
       groupId: this.group?.value,
-      songs: this.song?.value.map((val:any) => ({ id:val} as Song)),
-      genres: this.genre?.value.map((val:any) => ({ id:val} as Genre))
+      songs: this.song?.value,
+      genres: this.genre?.value
     };
 
     this.albumService.addEntity(album, environment.albumUrl)

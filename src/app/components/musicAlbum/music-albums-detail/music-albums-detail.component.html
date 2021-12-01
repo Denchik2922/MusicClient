@@ -1,8 +1,10 @@
+
+<div class="bg-white mb-4">
+<div class="buttons_block">
+  <button type="button" class="btn btn-danger" (click) = 'deleteAlbum()' *ngIf='isAdmin'>Delete</button>
+  <button type="button" class="btn buttons btn-warning" [routerLink]="['/album/edit', album.id]" *ngIf='isAdmin'>Edit</button>
+</div>
 <div class="col-lg-8 mx-auto p-3 py-md-5">
-    <div class="buttons_block">
-      <button type="button" class="btn btn-danger" (click) = 'deleteAlbum()' *ngIf='isAdmin'>Delete</button>
-      <button type="button" class="btn buttons btn-warning" [routerLink]="['/album/edit', album.id]" *ngIf='isAdmin'>Edit</button>
-    </div>
     <main>
       <p>Name</p>  
       <h3>{{album.name}}</h3>
@@ -40,4 +42,5 @@
 
 
     </main>
+</div>
 </div>
